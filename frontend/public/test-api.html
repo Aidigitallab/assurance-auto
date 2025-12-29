@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API Login - Status Codes</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+        }
+        h1 { color: #4ec9b0; }
+        button {
+            background: #0e639c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 10px 5px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button:hover { background: #1177bb; }
+        .output {
+            background: #252526;
+            border: 1px solid #3e3e42;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success { color: #4ec9b0; }
+        .error { color: #f48771; }
+        .warning { color: #dcdcaa; }
+        .status-200 { color: #4ec9b0; font-weight: bold; }
+        .status-401 { color: #f48771; font-weight: bold; }
+        .status-404 { color: #ce9178; font-weight: bold; }
+        input {
+            background: #3c3c3c;
+            border: 1px solid #3e3e42;
+            color: #d4d4d4;
+            padding: 8px;
+            margin: 5px;
+            width: 250px;
+            border-radius: 3px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #2d2d30;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Test API Login - Voir les Status HTTP</h1>
+    
+    <div class="test-section">
+        <h2>Test Personnalisé</h2>
+        <div>
+            <input type="email" id="email" placeholder="Email" value="admin@assurance.local">
+            <input type="password" id="password" placeholder="Password" value="Admin123!">
+            <button onclick="testCustomLogin()">🚀 Test Login</button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Tests Rapides</h2>
+        <button onclick="testCorrectCredentials()">✅ Test Credentials Corrects (?)</button>
+        <button onclick="testWrongPassword()">❌ Test Mauvais Password</button>
+        <button onclick="testWrongEmail()">❌ Test Email Inexistant</button>
+        <button onclick="testHealthCheck()">💚 Health Check API</button>
+    </div>
+
+    <div id="output" class="output">
+        <p class="warning">👆 Cliquez sur un bouton pour voir les status HTTP codes (200 OK, 401 Unauthorized, 404 Not Found, etc.)</p>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        
+        function log(message, className = '') {
+            const p = document.createElement('p');
+            p.className = className;
+            p.innerHTML = message;
+            output.appendChild(p);
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        function clear() {
+            output.innerHTML = '';
+        }
+        
+        function formatStatus(status) {
+            let className = '';
+            if (status === 200) className = 'status-200';
+            else if (status === 401) className = 'status-401';
+            else if (status === 404) className = 'status-404';
+            return `<span class="${className}">${status}</span>`;
+        }
+        
+        async function testLogin(email, password, description) {
+            clear();
+            log(`<strong>═══ ${description} ═══</strong>`, 'warning');
+            log(`📧 Email: <code>${email}</code>`);
+            log(`🔑 Password: <code>${password}</code>`);
+            log('');
+            
+            try {
+                log('⏳ Envoi de la requête...');
+                
+                const response = await fetch('http://localhost:5000/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                log('');
+                log(`<strong>📊 RÉPONSE HTTP:</strong>`);
+                log(`   Status: ${formatStatus(response.status)} ${response.statusText}`);
+                
+                const data = await response.json();
+                log('');
+                log(`<strong>📦 BODY:</strong>`);
+                log(`<pre>${JSON.stringify(data, null, 2)}</pre>`);
+                
+                if (response.status === 200) {
+                    log('', 'success');
+                    log('✅ SUCCESS - Login réussi!', 'success');
+                    if (data.data?.token) {
+                        log(`🎫 Token reçu: ${data.data.token.substring(0, 20)}...`, 'success');
+                    }
+                } else if (response.status === 401) {
+                    log('', 'error');
+                    log('❌ 401 UNAUTHORIZED - Email ou mot de passe incorrect', 'error');
+                } else if (response.status === 404) {
+                    log('', 'error');
+                    log('❌ 404 NOT FOUND - Endpoint introuvable', 'error');
+                } else {
+                    log('', 'error');
+                    log(`❌ ${response.status} - ${response.statusText}`, 'error');
+                }
+                
+            } catch (error) {
+                log('', 'error');
+                log(`❌ ERREUR RÉSEAU: ${error.message}`, 'error');
+                log('💡 Le backend est peut-être arrêté?', 'warning');
+            }
+        }
+        
+        async function testHealthCheck() {
+            clear();
+            log(`<strong>═══ Health Check API ═══</strong>`, 'warning');
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/health');
+                const data = await response.json();
+                
+                log(`Status: ${formatStatus(response.status)} ${response.statusText}`);
+                log(`<pre>${JSON.stringify(data, null, 2)}</pre>`);
+                
+                if (response.status === 200) {
+                    log('✅ Backend is running!', 'success');
+                }
+            } catch (error) {
+                log(`❌ Backend unreachable: ${error.message}`, 'error');
+            }
+        }
+        
+        function testCustomLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            testLogin(email, password, 'Test Personnalisé');
+        }
+        
+        function testCorrectCredentials() {
+            testLogin('admin@assurance.local', 'Admin123!', 'Test avec Admin123!');
+        }
+        
+        function testWrongPassword() {
+            testLogin('admin@assurance.local', 'WrongPassword123', 'Test Mauvais Password');
+        }
+        
+        function testWrongEmail() {
+            testLogin('inexistant@example.com', 'AnyPassword', 'Test Email Inexistant');
+        }
+        
+        // Auto-test au chargement
+        window.addEventListener('load', () => {
+            log('✨ Page chargée. Prêt pour les tests!', 'success');
+            log('');
+            log('💡 <strong>Codes HTTP à surveiller:</strong>');
+            log('   • <span class="status-200">200 OK</span> = Login réussi ✅');
+            log('   • <span class="status-401">401 Unauthorized</span> = Mauvais credentials ❌');
+            log('   • <span class="status-404">404 Not Found</span> = Endpoint introuvable ❌');
+        });
+    </script>
+</body>
+</html>
