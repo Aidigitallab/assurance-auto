@@ -126,8 +126,10 @@ npm install
 cp .env.example .env
 # Éditer .env avec vos valeurs
 
-# Démarrer MongoDB
-sudo systemctl start mongod
+# Démarrer MongoDB (selon votre OS)
+# Linux: sudo systemctl start mongod
+# macOS: brew services start mongodb-community
+# Windows: net start MongoDB
 
 # Créer un admin
 node src/scripts/seedAdmin.js
@@ -141,7 +143,7 @@ Le backend sera sur **http://localhost:5000**
 ### 3. Frontend
 
 ```bash
-cd ../frontend
+cd frontend
 
 # Installer les dépendances
 npm install
@@ -161,8 +163,8 @@ Le frontend sera sur **http://localhost:5173**
 
 ### Compte Admin par défaut
 ```
-Email: admin@sunuassurance.sn
-Mot de passe: Admin123456
+Email: admin@assurance.local
+Mot de passe: Admin@12345
 ```
 
 ### Créer un compte client
