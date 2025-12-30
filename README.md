@@ -157,6 +157,31 @@ npm run dev
 
 Le frontend sera sur **http://localhost:5173**
 
+### 4. Initialiser les produits d'assurance
+
+```bash
+cd backend
+
+# Se connecter en tant qu'admin pour obtenir le token
+# Méthode 1 : Via curl
+curl -X POST http://localhost:5000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@assurance.local","password":"Admin@12345"}'
+
+# Copier le token retourné, puis :
+curl -X POST http://localhost:5000/api/admin/products/seed \
+  -H "Authorization: Bearer <VOTRE_TOKEN>"
+
+# Méthode 2 : Via l'interface web
+# 1. Se connecter sur http://localhost:5173/login avec admin@assurance.local
+# 2. Aller dans "Gestion Produits" → Cliquer sur "Initialiser les produits"
+```
+
+Cette commande créera 3 produits par défaut :
+- **TIERS** - Responsabilité civile (250 000 FCFA/an)
+- **TIERS_PLUS** - Tiers + Vol/Incendie (450 000 FCFA/an)
+- **TOUS_RISQUES** - Couverture complète (850 000 FCFA/an)
+
 ---
 
 ## 🧪 Tests
@@ -167,10 +192,17 @@ Email: admin@assurance.local
 Mot de passe: Admin@12345
 ```
 
-### Créer un compte client
-1. Aller sur http://localhost:5173/register
-2. Remplir le formulaire (mot de passe: 8+ chars, 1 majuscule, 1 minuscule, 1 chiffre)
-3. Se connecter
+### Flux de test complet
+1. **Initialiser les produits** (voir section 4 ci-dessus)
+2. **Créer un compte client** : http://localhost:5173/register
+   - Remplir le formulaire (mot de passe: 8+ chars, 1 majuscule, 1 minuscule, 1 chiffre)
+3. **Se connecter en tant que client**
+4. **Créer un véhicule** : Espace Client → Véhicules → Ajouter
+5. **Créer un devis** : Espace Client → Devis → Nouveau
+6. **Convertir en police** : Accepter le devis
+7. **Télécharger les documents** : Attestation, Contrat, Reçu
+8. **Déclarer un sinistre** : Sinistres → Nouveau
+9. **Se connecter en admin** pour gérer les sinistres
 
 ---
 
