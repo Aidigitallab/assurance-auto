@@ -323,8 +323,8 @@ curl -X POST http://localhost:5000/api/admin/products/seed \
 3. **Créer un devis** : Espace Client → Créer un Devis
 
 4. **Accès admin** : 
-   - Email : admin@sunuassurance.sn
-   - Mot de passe : Admin123456
+   - Email : admin@assurance.local
+   - Mot de passe : Admin@12345
 
 ### Tester les endpoints avec curl
 
@@ -357,8 +357,8 @@ curl http://localhost:5000/api/auth/me \
 
 ### Compte Admin par défaut
 ```
-Email: admin@sunuassurance.sn
-Mot de passe: Admin123456
+Email: admin@assurance.local
+Mot de passe: Admin@12345
 Rôle: ADMIN
 ```
 
