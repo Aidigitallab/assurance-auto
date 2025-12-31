@@ -56,7 +56,7 @@ export const ClaimDetail = () => {
                 : 'bg-gray-100 text-gray-800'
             }`}
           >
-            {data.status}
+            {data.status === "RECEIVED" ? "Reçu" : data.status === "UNDER_REVIEW" ? "En examen" : data.status === "EXPERT_ASSIGNED" ? "Expert assigné" : data.status === "IN_REPAIR" ? "En réparation" : data.status === "SETTLED" ? "Réglé" : data.status === "CLOSED" ? "Fermé" : data.status === "REJECTED" ? "Rejeté" : data.status === "PENDING" ? "En attente" : data.status}
           </span>
         </div>
       </div>
@@ -83,7 +83,7 @@ export const ClaimDetail = () => {
               <div>
                 <p className="text-sm text-gray-500">Montant estimé</p>
                 <p className="font-medium text-xl text-orange-600">
-                  {data.estimatedAmount.toLocaleString('fr-FR')} XOF
+                  {data.estimatedAmount.toLocaleString('fr-FR') : 'Non disponible'} XOF
                 </p>
               </div>
             )}
@@ -95,12 +95,12 @@ export const ClaimDetail = () => {
           <div className="space-y-3">
             <div>
               <p className="text-sm text-gray-500">Statut</p>
-              <p className="font-medium">{data.status}</p>
+            {data.status === "RECEIVED" ? "Reçu" : data.status === "UNDER_REVIEW" ? "En examen" : data.status === "EXPERT_ASSIGNED" ? "Expert assigné" : data.status === "IN_REPAIR" ? "En réparation" : data.status === "SETTLED" ? "Réglé" : data.status === "CLOSED" ? "Fermé" : data.status === "REJECTED" ? "Rejeté" : data.status === "PENDING" ? "En attente" : data.status}
             </div>
             <div>
               <p className="text-sm text-gray-500">Créé le</p>
               <p className="font-medium">
-                {new Date(data.createdAt).toLocaleString('fr-FR')}
+                {data.createdAt ? new Date(data.createdAt).toLocaleString('fr-FR') : 'Non disponible'}
               </p>
             </div>
           </div>

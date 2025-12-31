@@ -95,9 +95,6 @@ export const MyPolicies = () => {
                   📄 Voir les documents
                 </button>
                 <button className="px-4 py-2 bg-purple-50 text-purple-600 rounded hover:bg-purple-100 transition-colors text-sm font-medium">
-                  🔄 Renouveler
-                </button>
-              </div>
             </div>
           ))}
         </div>
