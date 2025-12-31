@@ -192,9 +192,9 @@ Mot de passe: Admin@12345
 6. **Créer un véhicule** : Espace Client → Véhicules → Ajouter
 7. **Créer un devis** : Espace Client → Devis → Nouveau (les 3 produits doivent apparaître)
 8. **Accepter le devis** pour le convertir en police
-9. **Télécharger les documents** : Attestation, Contrat, Reçu (PDF)
-10. **Déclarer un sinistre** : Sinistres → Nouveau
-11. **Retourner en admin** pour gérer les sinistres et voir le dashboard
+9. **Déclarer un sinistre** : Sinistres → Nouveau
+10. **Retourner en admin** pour gérer les sinistres et voir le dashboard
+11. **Télécharger les documents** _(Optionnel)_ : Attestation, Contrat, Reçu (PDF)
 
 ---
 
