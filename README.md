@@ -131,8 +131,12 @@ cp .env.example .env
 # macOS: brew services start mongodb-community
 # Windows: net start MongoDB
 
-# Créer un admin
+# ⚠️ IMPORTANT: Créer l'admin ET les produits d'assurance (UNE SEULE COMMANDE)
 node src/scripts/seedAdmin.js
+
+# Cette commande va créer :
+# ✅ 1 compte admin (admin@assurance.local / Admin@12345)
+# ✅ 3 produits d'assurance actifs (TIERS, TIERS_PLUS, TOUS_RISQUES)
 
 # Démarrer le backend
 npm run dev
@@ -157,31 +161,6 @@ npm run dev
 
 Le frontend sera sur **http://localhost:5173**
 
-### 4. Initialiser les produits d'assurance
-
-```bash
-cd backend
-
-# Se connecter en tant qu'admin pour obtenir le token
-# Méthode 1 : Via curl
-curl -X POST http://localhost:5000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"admin@assurance.local","password":"Admin@12345"}'
-
-# Copier le token retourné, puis :
-curl -X POST http://localhost:5000/api/admin/products/seed \
-  -H "Authorization: Bearer <VOTRE_TOKEN>"
-
-# Méthode 2 : Via l'interface web
-# 1. Se connecter sur http://localhost:5173/login avec admin@assurance.local
-# 2. Aller dans "Gestion Produits" → Cliquer sur "Initialiser les produits"
-```
-
-Cette commande créera 3 produits par défaut :
-- **TIERS** - Responsabilité civile (250 000 FCFA/an)
-- **TIERS_PLUS** - Tiers + Vol/Incendie (450 000 FCFA/an)
-- **TOUS_RISQUES** - Couverture complète (850 000 FCFA/an)
-
 ---
 
 ## 🧪 Tests
@@ -192,17 +171,26 @@ Email: admin@assurance.local
 Mot de passe: Admin@12345
 ```
 
+### Produits d'assurance (créés automatiquement par seedAdmin.js)
+- **TIERS** - Responsabilité civile : 250 000 FCFA/an
+- **TIERS_PLUS** - Tiers + Vol/Incendie : 450 000 FCFA/an
+- **TOUS_RISQUES** - Couverture complète : 850 000 FCFA/an
+
 ### Flux de test complet
-1. **Initialiser les produits** (voir section 4 ci-dessus)
-2. **Créer un compte client** : http://localhost:5173/register
+1. **Vérifier que seedAdmin.js a bien été exécuté** (voir section Installation Backend)
+2. **Se connecter en admin** : http://localhost:5173/login
+   - Email : admin@assurance.local
+   - Mot de passe : Admin@12345
+3. **Vérifier que les 3 produits sont actifs** : Gestion Produits
+4. **Créer un compte client** : Se déconnecter → http://localhost:5173/register
    - Remplir le formulaire (mot de passe: 8+ chars, 1 majuscule, 1 minuscule, 1 chiffre)
-3. **Se connecter en tant que client**
-4. **Créer un véhicule** : Espace Client → Véhicules → Ajouter
-5. **Créer un devis** : Espace Client → Devis → Nouveau
-6. **Convertir en police** : Accepter le devis
-7. **Télécharger les documents** : Attestation, Contrat, Reçu
-8. **Déclarer un sinistre** : Sinistres → Nouveau
-9. **Se connecter en admin** pour gérer les sinistres
+5. **Se connecter en tant que client**
+6. **Créer un véhicule** : Espace Client → Véhicules → Ajouter
+7. **Créer un devis** : Espace Client → Devis → Nouveau (les 3 produits doivent apparaître)
+8. **Accepter le devis** pour le convertir en police
+9. **Télécharger les documents** : Attestation, Contrat, Reçu (PDF)
+10. **Déclarer un sinistre** : Sinistres → Nouveau
+11. **Retourner en admin** pour gérer les sinistres et voir le dashboard
 
 ---
 
