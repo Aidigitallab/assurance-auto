@@ -165,4 +165,3 @@ const seedAdmin = async () => {
 };
 
 seedAdmin();
-// Version finale 2025
