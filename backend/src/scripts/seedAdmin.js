@@ -165,5 +165,3 @@ const seedAdmin = async () => {
 };
 
 seedAdmin();
-
-
