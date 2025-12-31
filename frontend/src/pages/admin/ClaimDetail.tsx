@@ -473,30 +473,6 @@ export const ClaimDetail = () => {
             </div>
           )}
 
-          {/* Assign Expert */}
-          {claim.status === 'UNDER_REVIEW' && !claim.expert && (
-            <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="px-6 py-4 bg-purple-500 text-white">
-                <h3 className="text-lg font-bold">Assigner un expert</h3>
-              </div>
-              <div className="p-6">
-                <input
-                  type="text"
-                  value={expertId}
-                  onChange={(e) => setExpertId(e.target.value)}
-                  placeholder="ID de l'expert"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg mb-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                />
-                <button
-                  onClick={handleAssignExpert}
-                  disabled={assignExpertMutation.isPending || !expertId}
-                  className="w-full px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                  Assigner l'expert
-                </button>
-              </div>
-            </div>
-          )}
 
           {/* Expert Info */}
           {claim.expert && (
@@ -520,39 +496,6 @@ export const ClaimDetail = () => {
             </div>
           )}
 
-          {/* Add Note */}
-          <div className="bg-white rounded-xl shadow-md overflow-hidden">
-            <div className="px-6 py-4 bg-blue-500 text-white">
-              <h3 className="text-lg font-bold">Ajouter une note</h3>
-            </div>
-            <div className="p-6 space-y-4">
-              <textarea
-                value={noteContent}
-                onChange={(e) => setNoteContent(e.target.value)}
-                placeholder="Contenu de la note..."
-                rows={4}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-              />
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={isInternalNote}
-                  onChange={(e) => setIsInternalNote(e.target.checked)}
-                  className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
-                />
-                <span className="text-sm text-gray-700">
-                  Note interne (non visible par le client)
-                </span>
-              </label>
-              <button
-                onClick={handleAddNote}
-                disabled={addNoteMutation.isPending || !noteContent.trim()}
-                className="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                Ajouter la note
-              </button>
-            </div>
-          </div>
 
           {/* Metadata */}
           <div className="bg-white rounded-xl shadow-md overflow-hidden">
