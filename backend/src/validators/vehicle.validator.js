@@ -35,6 +35,7 @@ exports.createVehicleValidation = [
   body('usage')
     .notEmpty()
     .withMessage('L\'usage est requis')
+    .customSanitizer(value => value ? value.toUpperCase() : value)
     .isIn(['PRIVATE', 'PROFESSIONAL'])
     .withMessage('L\'usage doit être PRIVATE ou PROFESSIONAL'),
 
@@ -46,6 +47,7 @@ exports.createVehicleValidation = [
 
   body('category')
     .optional()
+    .customSanitizer(value => value ? value.toUpperCase() : value)
     .isIn(['CAR', 'MOTORBIKE', 'TRUCK'])
     .withMessage('La catégorie doit être CAR, MOTORBIKE ou TRUCK'),
 
@@ -97,6 +99,7 @@ exports.updateVehicleValidation = [
 
   body('usage')
     .optional()
+    .customSanitizer(value => value ? value.toUpperCase() : value)
     .isIn(['PRIVATE', 'PROFESSIONAL'])
     .withMessage('L\'usage doit être PRIVATE ou PROFESSIONAL'),
 
@@ -107,6 +110,7 @@ exports.updateVehicleValidation = [
 
   body('category')
     .optional()
+    .customSanitizer(value => value ? value.toUpperCase() : value)
     .isIn(['CAR', 'MOTORBIKE', 'TRUCK'])
     .withMessage('La catégorie doit être CAR, MOTORBIKE ou TRUCK'),
 

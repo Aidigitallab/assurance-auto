@@ -92,7 +92,8 @@ const seedAdmin = async () => {
           pricing: { baseRate: 250000, vehicleValueRate: 2.5 },
           eligibility: {
             minVehicleYear: 1980,
-            maxVehicleYear: new Date().getFullYear()
+            maxVehicleYear: new Date().getFullYear(),
+            allowedCategories: ['CAR', 'MOTORBIKE', 'TRUCK']
           },
           status: 'ACTIVE',
           createdBy: adminId
@@ -114,7 +115,8 @@ const seedAdmin = async () => {
           pricing: { baseRate: 450000, vehicleValueRate: 3.5 },
           eligibility: {
             minVehicleYear: 1990,
-            maxVehicleYear: new Date().getFullYear()
+            maxVehicleYear: new Date().getFullYear(),
+            allowedCategories: ['CAR', 'MOTORBIKE', 'TRUCK']
           },
           status: 'ACTIVE',
           createdBy: adminId
@@ -139,7 +141,8 @@ const seedAdmin = async () => {
           pricing: { baseRate: 850000, vehicleValueRate: 5.0 },
           eligibility: {
             minVehicleYear: 2000,
-            maxVehicleYear: new Date().getFullYear()
+            maxVehicleYear: new Date().getFullYear(),
+            allowedCategories: ['CAR', 'MOTORBIKE', 'TRUCK']
           },
           status: 'ACTIVE',
           createdBy: adminId
