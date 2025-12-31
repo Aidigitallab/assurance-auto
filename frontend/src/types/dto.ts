@@ -39,7 +39,7 @@ export interface RegisterRequest {
 // ========================================
 // VEHICLE
 // ========================================
-export type VehicleUsage = 'PRIVATE' | 'COMMERCIAL' | 'TAXI';
+export type VehicleUsage = 'PRIVATE' | 'PROFESSIONAL';
 
 export interface VehicleDTO {
   _id: string;

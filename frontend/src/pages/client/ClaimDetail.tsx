@@ -67,17 +67,17 @@ export const ClaimDetail = () => {
           <div className="space-y-3">
             <div>
               <p className="text-sm text-gray-500">Type d'incident</p>
-              <p className="font-medium">{data.incident.type}</p>
+              <p className="font-medium">{data.incident?.type || 'Non spécifié'}</p>
             </div>
             <div>
               <p className="text-sm text-gray-500">Date de l'incident</p>
               <p className="font-medium">
-                {new Date(data.incident.date).toLocaleDateString('fr-FR')}
+                {new Date(data.incident?.date || new Date()).toLocaleDateString('fr-FR')}
               </p>
             </div>
             <div>
               <p className="text-sm text-gray-500">Lieu</p>
-              <p className="font-medium">{data.incident.location}</p>
+              <p className="font-medium">{data.incident?.location || 'Non spécifié'}</p>
             </div>
             {data.estimatedAmount && (
               <div>
@@ -109,7 +109,7 @@ export const ClaimDetail = () => {
 
       <div className="bg-white rounded-lg shadow p-6">
         <h2 className="text-xl font-semibold mb-4">Description</h2>
-        <p className="text-gray-700 whitespace-pre-wrap">{data.incident.description}</p>
+        <p className="text-gray-700 whitespace-pre-wrap">{data.incident?.description || 'Aucune description'}</p>
       </div>
 
       {/* Communication */}

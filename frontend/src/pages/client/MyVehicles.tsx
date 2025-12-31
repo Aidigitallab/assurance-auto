@@ -149,7 +149,7 @@ export const MyVehicles = () => {
                 <div>
                   <p className="text-gray-500">Usage</p>
                   <p className="font-medium">
-                    {vehicle.usage === 'PRIVATE' ? 'Privé' : vehicle.usage === 'COMMERCIAL' ? 'Commercial' : 'Taxi'}
+                    {vehicle.usage === 'PRIVATE' ? 'Privé' : vehicle.usage === 'PROFESSIONAL' ? 'Professionnel' : vehicle.usage}
                   </p>
                 </div>
               </div>
@@ -246,8 +246,8 @@ export const MyVehicles = () => {
                     className="w-full border rounded-lg px-3 py-2"
                   >
                     <option value="PRIVATE">Privé</option>
-                    <option value="COMMERCIAL">Commercial</option>
-                    <option value="TAXI">Taxi</option>
+                    <option value="PROFESSIONAL">Professionnel</option>
+                    
                   </select>
                 </div>
               </div>
