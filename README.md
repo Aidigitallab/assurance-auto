@@ -132,7 +132,7 @@ cp .env.example .env
 # Windows: net start MongoDB
 
 # ⚠️ IMPORTANT: Créer l'admin ET les produits d'assurance (UNE SEULE COMMANDE)
-node src/scripts/seedAdmin.js
+node src/scripts/initSystem.js
 
 # Cette commande va créer :
 # ✅ 1 compte admin (admin@assurance.local / Admin@12345)
