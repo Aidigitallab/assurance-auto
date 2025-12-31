@@ -174,13 +174,13 @@ Email: admin@assurance.local
 Mot de passe: Admin@12345
 ```
 
-### Produits d'assurance (créés automatiquement par seedAdmin.js)
+### Produits d'assurance (créés automatiquement par initSystem.js)
 - **TIERS** - Responsabilité civile : 250 000 FCFA/an
 - **TIERS_PLUS** - Tiers + Vol/Incendie : 450 000 FCFA/an
 - **TOUS_RISQUES** - Couverture complète : 850 000 FCFA/an
 
 ### Flux de test complet
-1. **Vérifier que seedAdmin.js a bien été exécuté** (voir section Installation Backend)
+1. **Vérifier que initSystem.js a bien été exécuté** (voir section Installation Backend)
 2. **Se connecter en admin** : http://localhost:5173/login
    - Email : admin@assurance.local
    - Mot de passe : Admin@12345
