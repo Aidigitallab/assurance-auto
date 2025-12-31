@@ -83,7 +83,7 @@ export const ClaimDetail = () => {
               <div>
                 <p className="text-sm text-gray-500">Montant estimé</p>
                 <p className="font-medium text-xl text-orange-600">
-                  {data.estimatedAmount.toLocaleString('fr-FR') : 'Non disponible'} XOF
+                  {data.estimatedAmount ? data.estimatedAmount.toLocaleString('fr-FR') : 'Non disponible'} XOF
                 </p>
               </div>
             )}
