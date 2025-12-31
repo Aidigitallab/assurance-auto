@@ -186,8 +186,9 @@ Mot de passe: Admin@12345
    - Mot de passe : Admin@12345
 3. **Vérifier que les 3 produits sont actifs** : Gestion Produits
 4. **Créer un compte client** : Se déconnecter → http://localhost:5173/register
+   - ⚠️ **Important** : Il faut s'inscrire pour créer un compte client (pas de seed client)
    - Remplir le formulaire (mot de passe: 8+ chars, 1 majuscule, 1 minuscule, 1 chiffre)
-5. **Se connecter en tant que client**
+5. **Se connecter en tant que client** avec les identifiants que vous venez de créer
 6. **Créer un véhicule** : Espace Client → Véhicules → Ajouter
 7. **Créer un devis** : Espace Client → Devis → Nouveau (les 3 produits doivent apparaître)
 8. **Accepter le devis** pour le convertir en police
@@ -268,6 +269,12 @@ chore: Maintenance
 ## 📄 Licence
 
 Projet académique - Tous droits réservés
+
+---
+
+## 👨‍💻 Auteur
+
+**SAWADOGO Tarwendpanga Ahmed El Amine**
 
 ---
 
