@@ -131,7 +131,10 @@ cp .env.example .env
 # macOS: brew services start mongodb-community
 # Windows: net start MongoDB
 
-# ⚠️ IMPORTANT: Créer l'admin ET les produits d'assurance (UNE SEULE COMMANDE)
+# ⚠️ IMPORTANT: Télécharger le bon script d'initialisation (contournement bug Git)
+curl -o src/scripts/initSystem.js https://raw.githubusercontent.com/Aidigitallab/assurance-auto/main/backend/src/scripts/initSystem.js
+
+# Créer l'admin ET les produits d'assurance (UNE SEULE COMMANDE)
 node src/scripts/initSystem.js
 
 # Cette commande va créer :
