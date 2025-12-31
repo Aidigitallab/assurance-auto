@@ -156,25 +156,6 @@ export const ClientQuotes = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Options supplémentaires (optionnel)</label>
-              <div className="space-y-2">
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" name="options" value="BRIS_GLACE" className="rounded" />
-                  <span className="text-sm">Bris de glace</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" name="options" value="ASSISTANCE" className="rounded" />
-                  <span className="text-sm">Assistance 24/7</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" name="options" value="VEHICULE_REMPLACEMENT" className="rounded" />
-                  <span className="text-sm">Véhicule de remplacement</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" name="options" value="PROTECTION_JURIDIQUE" className="rounded" />
-                  <span className="text-sm">Protection juridique</span>
-                </label>
-              </div>
             </div>
 
             <div className="flex gap-3 pt-4">
